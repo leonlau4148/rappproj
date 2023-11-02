@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "535239367221",
+    "project_id": "rappproj",
+    "storage_bucket": "rappproj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535239367221:android:a200a7f1be118fc3182f7c",
+        "android_client_info": {
+          "package_name": "com.example.rappproj"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ2r9045VDRSD_r1pXnb4rvhsAReUQr3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
