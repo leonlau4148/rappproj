@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:developer' as devtools show log;
-
 import 'package:rappproj/constants/routes.dart';
+import 'package:rappproj/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -74,13 +73,31 @@ class _LoginViewState extends State<LoginView> {
                 }
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'invalid-email') {
-                  devtools.log("Invalid email hoho");
-                } else if (e.code.toString() == 'INVALID_LOGIN_CREDENTIALS') {
-                  devtools.log("Invalid email or password");
+                  await showErrorDialog(
+                    context,
+                    "Invalid Email",
+                  );
+                } else if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
+                  await showErrorDialog(
+                    context,
+                    "Wrong Credentials",
+                  );
                 } else if (e.code == 'too-many-requests') {
-                  devtools.log('Too many requests, try again later');
+                  await showErrorDialog(
+                    context,
+                    "Too many requests, try again later",
+                  );
+                } else {
+                  await showErrorDialog(
+                    context,
+                    "Erorr: ${e.code}",
+                  );
                 }
-                devtools.log(e.code.toString().replaceAll('_', ' '));
+              } catch (e) {
+                await showErrorDialog(
+                  context,
+                  "Erorr: ${e.toString()}",
+                );
               }
             },
             child: const Text('Login'),
