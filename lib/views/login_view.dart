@@ -71,7 +71,14 @@ class _LoginViewState extends State<LoginView> {
                   );
                 }
               } on FirebaseAuthException catch (e) {
-                devtools.log("Invalid email or password");
+                if (e.code == 'invalid-email') {
+                  devtools.log("Invalid email hoho");
+                } else if (e.code.toString() == 'INVALID_LOGIN_CREDENTIALS') {
+                  devtools.log("Invalid email or password");
+                } else if (e.code == 'too-many-requests') {
+                  devtools.log('Too many requests, try again later');
+                }
+                devtools.log(e.code.toString().replaceAll('_', ' '));
               }
             },
             child: const Text('Login'),
